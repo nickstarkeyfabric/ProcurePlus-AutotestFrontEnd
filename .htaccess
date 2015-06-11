@@ -1,0 +1,4 @@
+RewriteEngine on
+
+RewriteCond $1 !^(index\.php|robots\.txt|favicon\.ico|css|documents|fusion|img|js|xml|screenshots|lockedout\.html)
+RewriteRule ^(.*)$ /index.php/$1 [L]
