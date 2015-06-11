@@ -1,6 +1,6 @@
 <?php $this->load->helper('form'); ?>
 <h1>Create new test</h1>
-<form action="/tests/create" autocomplete="off" method="POST">
+<form action="/tests/add" autocomplete="off" method="POST">
 		<fieldset>			
 			<div class="input">
 				<label>Name:</label>

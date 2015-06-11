@@ -10,7 +10,7 @@ class Test_groups extends CI_Controller {
     //public function view() {
     //    $this->load->view('test_groups/create');
     //}
-    public function create() {
+    public function add() {
         if ($_POST) {
             $name = $_POST['data']['name'];
             $tags = $_POST['data']['tags'];
@@ -22,6 +22,6 @@ class Test_groups extends CI_Controller {
             
             var_dump($testgroup_entity);
         }
-        $this->load->view('test_groups/create');
+        $this->load->view('test_groups/add');
     }
 }

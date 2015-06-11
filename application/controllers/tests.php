@@ -12,7 +12,7 @@ class Tests extends CI_Controller {
         $this->load->view('tests/view');
     }
     
-    public function create() {
+    public function add() {
         if ($_POST) {
             $name = $_POST['data']['name'];
             $desc = $_POST['data']['desc'];
@@ -26,6 +26,6 @@ class Tests extends CI_Controller {
             
             var_dump($tests_entity);
         }
-        $this->load->view('tests/create');
+        $this->load->view('tests/add');
     }
 }

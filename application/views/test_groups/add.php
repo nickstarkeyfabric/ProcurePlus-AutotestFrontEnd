@@ -1,7 +1,7 @@
 <?php $this->load->helper('form'); ?>
 <h1>Create new test group</h1>
-<form action="/index.php/create" autocomplete="off" method="POST">
-		<fieldset>			
+<form action="/test_groups/add" autocomplete="off" method="POST">
+		<fieldset>
 			<div class="input">
 				<label>Name:</label>
 				<?php echo form_input('data[name]'); ?>
