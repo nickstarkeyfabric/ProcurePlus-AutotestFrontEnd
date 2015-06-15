@@ -37,5 +37,16 @@ class Tests_factory {
         $tests->setActive($active);
         $tests->setPriority($priority);
     	return $tests;
-    } 
+    }
+    
+    public function getAllTestsByGroupId($id) {
+        $tests = new Tests_Model();
+        return $tests->getAllTestsByGroupId($id);
+    }
+    
+    public function getTestById($id) {
+        $test = new Tests_Model();
+        return $test->getTestById($id);
+    }
+    
 }

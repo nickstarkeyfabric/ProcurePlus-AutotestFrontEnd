@@ -53,4 +53,4 @@ $route['default_controller'] = 'welcome';
 //$route['(:any)'] = 'pages/view/$1';
 //$route['default_controller'] = 'pages/view';
 
-$route['create'] = 'test_groups/create';
+//$route['create'] = 'test_groups/create';

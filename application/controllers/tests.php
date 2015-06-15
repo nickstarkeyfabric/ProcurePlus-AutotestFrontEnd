@@ -6,10 +6,15 @@ class Tests extends CI_Controller {
     {
         parent::__construct();
         $this->load->library('Tests_factory');
+        $this->load->library('Test_Groups_factory');
     }
     
-    public function view() {
-        $this->load->view('tests/view');
+    public function view($id = 0) {
+        if ($id > 0) {
+            $test_entity = $this->tests_factory->getTestById($id);
+            $data['test'] = $test_entity;
+            $this->load->view('tests/view', $data);
+        }        
     }
     
     public function add() {
@@ -26,6 +31,9 @@ class Tests extends CI_Controller {
             
             var_dump($tests_entity);
         }
-        $this->load->view('tests/add');
+        $testgroup_entity = $this->test_groups_factory->getAllTestGroups();
+        $data['testgroups'] = $testgroup_entity;
+        var_dump($data['testgroups']);
+        $this->load->view('tests/add', $data);
     }
 }

@@ -47,6 +47,18 @@ class Tests_Model extends CI_Model {
         return $this->test_id;
     }
     
+    public function getAllTestsByGroupId($id) {
+        //$query = $this->db->get('test_groups');
+        //$this->db->select('id, group_name');
+        $query = $this->db->get_where('tests', array('test_group_id' => $id));
+        return $query->result_array();
+    }
+    
+    public function getTestById($id) {
+        $query = $this->db->get_where('tests', array('test_id' => $id));
+        return $query->row();
+    }
+    
     public function commit() {
         $data = array(
             'test_name' => $this->test_name,

@@ -13,10 +13,10 @@
 			<div class="input">
 				<label>Location:</label>
 				<?php echo form_input('data[location]'); ?>
-			</div>                      
+			</div>
 			<div class="input">
 				<label>Test Group Id:</label>
-				<?php echo form_input('data[test_group_id]'); ?>
+				<?php echo form_dropdown('data[testgroups][0]'); ?>
 			</div>                        
 			<div class="input">
 				<label>Priority:</label>

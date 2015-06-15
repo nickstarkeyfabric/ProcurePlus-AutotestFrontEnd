@@ -36,6 +36,16 @@ class Test_Groups_factory {
         $test_group->setGroupDesc($desc);
         $test_group->setActive($active);
     	return $test_group;
-    } 
+    }
+    
+    public function getAllTestGroups() {
+        $test_group = new Test_Groups_Model();
+        return $test_group->getAllTestGroups();
+    }
+    
+    public function getTestGroup($id) {
+        $test_group = new Test_Groups_Model();
+        return $test_group->getTestGroup($id);
+    }
 }
 

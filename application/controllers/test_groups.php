@@ -6,10 +6,24 @@ class Test_groups extends CI_Controller {
     {
         parent::__construct();
         $this->load->library('Test_Groups_factory');
+        $this->load->library('Tests_factory');
     }
-    //public function view() {
-    //    $this->load->view('test_groups/create');
-    //}
+    
+    public function view($id = -1) {
+        if ($id == -1) {
+            $testgroup_entity = $this->test_groups_factory->getAllTestGroups();
+            $data['testgroups'] = $testgroup_entity;
+            $this->load->view('test_groups/view_all', $data);
+        }
+        else {
+            $testgroup_entity = $this->test_groups_factory->getTestGroup($id);
+            $test_entity = $this->tests_factory->getAllTestsByGroupId($id);
+            $data['testgroups'] = $testgroup_entity;
+            $data['tests'] = $test_entity;
+            $this->load->view('test_groups/view', $data);
+        }
+    }
+    
     public function add() {
         if ($_POST) {
             $name = $_POST['data']['name'];
