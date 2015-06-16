@@ -14,22 +14,56 @@ class Test_Cycles_Model extends CI_Model {
     
     public function __construct() {
         parent::__construct();
+        $this->load->database();
     }
     
     public function getId() {
         return $this->test_cycle_id;
     }
     
-    public function commit() {
-        $data = array();
-        return ($this->test_cycle_id > 0) ? $this->update($data) : $this->insert($data);
+    public function getMostRecentTestCycle() {
+        $this->db->order_by("date_finish, time_finish", "desc"); 
+        $this->db->limit(1);
+        $query = $this->db->get('test_cycles');
+        return $query->row();
     }
     
-    private function update($data) {
-        return ($this->db->update("test_cycles", $data, array("id" => $this->test_cycles_id))) == true;
+    public function getAllTestCycles() {
+        $this->db->order_by("date_finish, time_finish", "desc");
+        $query = $this->db->get('test_cycles');
+        return $query->result_array();
     }
     
-    private function insert($data) {
+    public function getAllTestCyclesWithStatistics() {
+        $this->db->select('test_cycle');
+        $this->db->select('test_cycle_tags');
+        $this->db->select_sum('passes');
+        $this->db->select_sum('fails');
+        $this->db->from('test_cycles');
+        $this->db->join('test_runs', 'test_runs.test_cycle = test_cycles.test_cycle_id');
+        $this->db->order_by("test_cycle_id", "desc");
+        $this->db->group_by("test_cycle");
         
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+    
+    public function getTestGroupsStatisticsByTestCycleId($id) {
+        //$this->db->select('test_cycles');
+        $this->db->select('test_groups.id');
+        $this->db->select('test_groups.group_name');
+        $this->db->select('test_cycle_tags');
+        $this->db->select_sum('passes');
+        $this->db->select_sum('fails');
+        $this->db->from('test_cycles');
+        $this->db->join('test_runs', 'test_runs.test_cycle = test_cycles.test_cycle_id', 'left');
+        $this->db->join('tests', 'test_runs.test_id = tests.test_id', 'left');
+        $this->db->join('test_groups', 'tests.test_group_id = test_groups.id', 'left');
+        $this->db->where('test_cycles.test_cycle_id',$id);
+        $this->db->order_by("test_cycle_id", "desc");
+        $this->db->group_by("test_cycle");
+        
+        $query = $this->db->get();
+        return $query->result_array();
     }
 }

@@ -45,7 +45,7 @@
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
 
-$route['default_controller'] = 'welcome';
+$route['default_controller'] = 'test_cycles/view';
 //$route['(:any)'] = 'pages/view/$1';
 
 //$route['news/(:any)'] = 'news/view/$1';
