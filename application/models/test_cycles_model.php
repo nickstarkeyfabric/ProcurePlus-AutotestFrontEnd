@@ -37,6 +37,10 @@ class Test_Cycles_Model extends CI_Model {
     public function getAllTestCyclesWithStatistics() {
         $this->db->select('test_cycle');
         $this->db->select('test_cycle_tags');
+        $this->db->select('test_cycles.date_start');
+        $this->db->select('test_cycles.time_start');
+        $this->db->select('test_cycles.date_finish');
+        $this->db->select('test_cycles.time_finish');
         $this->db->select_sum('passes');
         $this->db->select_sum('fails');
         $this->db->from('test_cycles');
@@ -53,6 +57,8 @@ class Test_Cycles_Model extends CI_Model {
         $this->db->select('test_groups.id');
         $this->db->select('test_groups.group_name');
         $this->db->select('test_cycle_tags');
+        $this->db->select('test_cycles.date_start');
+        $this->db->select('test_cycles.time_start');
         $this->db->select_sum('passes');
         $this->db->select_sum('fails');
         $this->db->from('test_cycles');
@@ -65,5 +71,28 @@ class Test_Cycles_Model extends CI_Model {
         
         $query = $this->db->get();
         return $query->result_array();
+    }
+    
+    public function getAllTestCyclesWithStatisticsPage($limit, $start) {
+        $this->db->limit($limit, $start);        
+        $this->db->select('test_cycle');
+        $this->db->select('test_cycle_tags');
+        $this->db->select('test_cycles.date_start');
+        $this->db->select('test_cycles.time_start');
+        $this->db->select('test_cycles.date_finish');
+        $this->db->select('test_cycles.time_finish');
+        $this->db->select_sum('passes');
+        $this->db->select_sum('fails');
+        $this->db->from('test_cycles');
+        $this->db->join('test_runs', 'test_runs.test_cycle = test_cycles.test_cycle_id');
+        $this->db->order_by("test_cycle_id", "desc");
+        $this->db->group_by("test_cycle");
+        
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+    
+    public function paginationLinks() {
+        
     }
 }

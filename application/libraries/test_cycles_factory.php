@@ -45,5 +45,10 @@ class Test_Cycles_factory {
         $statistics = new Test_Cycles_Model();
         return $statistics->getTestGroupsStatisticsByTestCycleId($id);
     }
+    
+    public function getAllTestCyclesWithStatisticsPage($limit, $start) {
+        $all_test_cycles = new Test_Cycles_Model();
+        return $all_test_cycles->getAllTestCyclesWithStatisticsPage($limit, $start);
+    }
 }
 
