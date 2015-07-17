@@ -50,5 +50,15 @@ class Test_Cycles_factory {
         $all_test_cycles = new Test_Cycles_Model();
         return $all_test_cycles->getAllTestCyclesWithStatisticsPage($limit, $start);
     }
+    
+    public function getTheMostRecentTestCycleStatistics() {
+        $test_cycle = new Test_Cycles_Model();
+        return $test_cycle->getTheMostRecentTestCycleStatistics();
+    }
+    
+    public function getCount() {
+        $all_test_cycles = new Test_Cycles_Model();
+        return $all_test_cycles->getCount();
+    }
 }
 
