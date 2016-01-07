@@ -44,7 +44,7 @@ class Test_Groups_Model extends CI_Model {
     public function getAllTestGroups() {
         //$query = $this->db->get('test_groups');
         //$this->db->select('id, group_name');
-        $query = $this->db->get_where('test_groups', array('active' => 1));
+        $query = $this->db->get_where('test_groups');
         return $query->result_array();
     }
 
