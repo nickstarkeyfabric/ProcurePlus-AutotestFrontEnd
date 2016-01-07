@@ -2,7 +2,7 @@
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Tests_factory {
     var $CI;
-    
+
     public function __construct($ci = null) {
         if ($ci == null) {
             //When the class is constructed get an instance of codeigniter so we can access it locally
@@ -10,10 +10,10 @@ class Tests_factory {
             $this->CI->load->model("Tests_Model");
         }
         else {
-            $this->CI = $ci; 
+            $this->CI = $ci;
         }
     }
-    
+
     public function Tests_factory($ci = null)
     {
         if ($ci == null) {
@@ -22,11 +22,11 @@ class Tests_factory {
             $this->CI->load->model("Tests_Model");
         }
         else {
-            $this->CI = $ci; 
+            $this->CI = $ci;
         }
     }
-    
-    public function create_new_tests_entity($name, $desc, $location, 
+
+    public function create_new_tests_entity($name, $desc, $location,
             $test_group_id, $active, $priority) {
         $tests = new Tests_Model();
         $tests->setId(0);
@@ -36,17 +36,17 @@ class Tests_factory {
         $tests->setTestGroupId($test_group_id);
         $tests->setActive($active);
         $tests->setPriority($priority);
-    	return $tests;
+        return $tests;
     }
-    
+
     public function getAllTestsByGroupId($id) {
         $tests = new Tests_Model();
         return $tests->getAllTestsByGroupId($id);
     }
-    
+
     public function getTestById($id) {
         $test = new Tests_Model();
         return $test->getTestById($id);
     }
-    
+
 }

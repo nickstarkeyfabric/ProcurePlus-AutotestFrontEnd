@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="page-header">
+            <h1>Test Manager <small>Viewing Test</small></h1>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Information</h3>
+            </div>
+            <div class="panel-body">
+                <dl class="dl-horizontal">
+                    <dt>Id:</dt>
+                    <dd><?php echo $test->test_id; ?></dd>
+                    <dt>Name: </dt>
+                    <dd><?php echo $test->test_name; ?></dd>
+                    <dt>Description:</dt>
+                    <dd><?php echo $test->test_description; ?></dd>
+                </dl>
+            </div>
+        </div>
+
+        <?php
+            $raw_file = file_get_contents(dirname(dirname(__DIR__)) . '/debug/tests/dummy_test.html_RESULTS.htm');
+            $stripped = between('<body>', '</body>', $raw_file);
+            $tidied = str_replace('<table>', '<table class="table table-bordered">', $stripped);
+            $tidied = str_replace('<table border="1" cellpadding="1" cellspacing="1">', '<table class="table table-bordered">', $tidied);
+            echo $tidied;
+        ?>
+    </div>
+</div>
