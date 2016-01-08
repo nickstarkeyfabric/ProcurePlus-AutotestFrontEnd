@@ -30,6 +30,9 @@
                     <dt>Priority:</dt>
                     <dd><?php echo $test->priority; ?></dd>
                 </dl>
+                <div class="text-center">
+                    <a href="<?php echo $test->file_location; ?>" class="btn btn-primary">Download</a>
+                </div>
             </div>
         </div>
     </div>

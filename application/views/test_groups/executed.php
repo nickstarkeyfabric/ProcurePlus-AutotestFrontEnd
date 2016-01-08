@@ -51,7 +51,7 @@
                     <td><span class="label label-danger"><?php echo $test['fails']; ?></span></td>
                     <td><span class="label label-default"><?php echo $test['asserts']; ?></span></td>
                     <td><?php echo timespan(strtotime($test['time_finish']), strtotime($test['time_start'])); ?></td>
-                    <td><a href="<?php echo $test['file_location']; ?>" class="btn btn-primary" role="button">Download</a></td>
+                    <td><a href="<?php echo $test['results']; ?>" class="btn btn-primary" role="button">Download</a></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
