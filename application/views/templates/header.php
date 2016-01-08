@@ -7,6 +7,12 @@
     <script src="<?php echo base_url('assets/js/jquery-2.1.4.min.js')?>"></script>
     <script src="<?php echo base_url('assets/js/bootstrap.min.js')?>"></script>
     <script src="<?php echo base_url('assets/js/bootstrap-datepicker.min.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/global.js')?>"></script>
+
+    <?php if(isset($scripts)) : foreach($scripts as $script) : ?>
+    <script src="<?php echo base_url($script)?>"></script>
+    <?php endforeach; endif; ?>
+
     <script type="text/javascript">
         $( document ).ready(function() {
             $('.datepicker').datepicker({
@@ -45,3 +51,4 @@
 
     <div class="container">
         <?php echo flash($this->session->flashdata('flash')); ?>
+        <div id="flash-message"></div>

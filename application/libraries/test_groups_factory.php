@@ -52,5 +52,9 @@ class Test_Groups_factory {
         $test_group = new Test_Groups_Model();
         return $test_group->getTestGroup($id);
     }
-}
 
+    public function ajax_toggle_group_active($id) {
+        $test_group = new Test_Groups_Model();
+        return $test_group->ajax_toggle_group_active($id);
+    }
+}

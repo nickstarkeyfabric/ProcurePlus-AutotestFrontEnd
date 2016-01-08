@@ -30,7 +30,7 @@
                     <td><?php echo $value['id']; ?></td>
                     <td><?php echo $value['group_name']; ?></td>
                     <td><?php echo $value['group_tags']; ?></td>
-                    <td><?php echo ($value['active'] == 1 ? '<span class="label label-success">YES</span>' : '<span class="label label-danger">NO</span>'); ?></td>
+                    <td><?php echo ($value['active'] == 1 ? '<button data-test-group-id="'.$value['id'].'" class="active-toggle btn btn-success btn-block">YES</button>' : '<button data-test-group-id="'.$value['id'].'" class="active-toggle btn btn-danger btn-block">NO</button>'); ?></td>
                     <td>
                         <a href="/test_groups/view/<?php echo $value['id']; ?>" class="btn btn-primary" role="button">View</a>
                         <a href="/test_groups/edit/<?php echo $value['id']; ?>" class="btn btn-primary" role="button">Edit</a>

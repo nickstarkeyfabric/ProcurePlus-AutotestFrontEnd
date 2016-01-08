@@ -76,6 +76,18 @@ class Test_Groups_Model extends CI_Model {
         return ($this->id > 0) ? $this->update($data) : $this->insert($data);
     }
 
+    public function ajax_toggle_group_active($id) {
+        $group = $this->getTestGroup($id);
+
+        if($group->active == 1) {
+            $group->active = 0;
+        } else {
+            $group->active = 1;
+        }
+
+        return ($this->db->update("test_groups", $group, array("id" => $id))) == true;
+    }
+
     private function update($data) {
         return ($this->db->update("test_groups", $data, array("id" => $this->id))) == true;
     }

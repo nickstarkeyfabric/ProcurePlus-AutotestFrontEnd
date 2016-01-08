@@ -71,6 +71,18 @@ class Tests_Model extends CI_Model {
         return ($this->test_id > 0) ? $this->update($data) : $this->insert($data);
     }
 
+    public function ajax_toggle_test_active($id) {
+        $test = $this->getTestById($id);
+
+        if($test->active == 1) {
+            $test->active = 0;
+        } else {
+            $test->active = 1;
+        }
+
+        return ($this->db->update("tests", $test, array("test_id" => $id))) == true;
+    }
+
     private function update($data) {
         return ($this->db->update("tests", $data, array("test_id" => $this->test_id))) == true;
     }

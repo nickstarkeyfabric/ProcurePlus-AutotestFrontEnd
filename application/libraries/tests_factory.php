@@ -49,4 +49,8 @@ class Tests_factory {
         return $test->getTestById($id);
     }
 
+    public function ajax_toggle_test_active($id) {
+        $test = new Tests_Model();
+        return $test->ajax_toggle_test_active($id);
+    }
 }

@@ -16,6 +16,9 @@ class Test_groups extends MY_Controller {
         if (!$id) {
             $testgroup_entity = $this->test_groups_factory->getAllTestGroups();
             $data['testgroups'] = $testgroup_entity;
+
+            $data['scripts'] = array('assets/js/pages/test_groups/view_all.js');
+
             $this->show_view('test_groups/view_all', $data);
         }
         else {
@@ -23,6 +26,9 @@ class Test_groups extends MY_Controller {
             $test_entity = $this->tests_factory->getAllTestsByGroupId($id);
             $data['testgroups'] = $testgroup_entity;
             $data['tests'] = $test_entity;
+
+            $data['scripts'] = array('assets/js/pages/test_groups/view.js');
+
             $this->show_view('test_groups/view', $data);
         }
     }
@@ -86,5 +92,59 @@ class Test_groups extends MY_Controller {
         $data['run_tests'] = $run_tests;
 
         $this->show_view('test_groups/executed', $data);
+    }
+
+    /**
+     *  Method for toggling test groups on and off via Ajax
+     *
+     *  @param $id  ID of the test group to toggle
+     */
+    public function ajax_toggle_group_active($id = null) {
+        if(!$this->input->is_ajax_request()) {
+            show_404();
+        }
+
+        $json['success'] = false;
+        $json['message'] = "Unable to update test group";
+
+        if(empty($id)) {
+            echo json_encode($json);
+            die;
+        }
+
+        if($this->test_groups_factory->ajax_toggle_group_active($id)) {
+            $json['success'] = true;
+            $json['message'] = "Test group updated";
+        }
+
+        echo json_encode($json);
+        die;
+    }
+
+    /**
+     *  Method for toggling individual tests on and off via Ajax
+     *
+     *  @param $id  ID of the test to toggle
+     */
+    public function ajax_toggle_test_active($id = null) {
+        if(!$this->input->is_ajax_request()) {
+            show_404();
+        }
+
+        $json['success'] = false;
+        $json['message'] = "Unable to update test";
+
+        if(empty($id)) {
+            echo json_encode($json);
+            die;
+        }
+
+        if($this->tests_factory->ajax_toggle_test_active($id)) {
+            $json['success'] = true;
+            $json['message'] = "Test updated";
+        }
+
+        echo json_encode($json);
+        die;
     }
 }

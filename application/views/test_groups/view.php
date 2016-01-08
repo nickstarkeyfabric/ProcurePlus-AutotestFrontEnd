@@ -41,7 +41,7 @@
                 <tr>
                     <td><?php echo $value['test_id']; ?></td>
                     <td><?php echo $value['test_name']; ?></td>
-                    <td><?php echo ($value['active'] == 1 ? '<span class="label label-success">YES</span>' : '<span class="label label-danger">NO</span>'); ?></td>
+                    <td><?php echo ($value['active'] == 1 ? '<button data-test-id="'.$value['test_id'].'" class="active-toggle btn btn-success btn-block">YES</button>' : '<button data-test-id="'.$value['test_id'].'" class="active-toggle btn btn-danger btn-block">NO</button>'); ?></td>
                     <td>
                         <a href="/tests/view/<?php echo $value['test_id']; ?>" class="btn btn-primary" role="button">View</a>
                         <a href="/tests/edit/<?php echo $value['test_id']; ?>" class="btn btn-primary" role="button">Edit</a>

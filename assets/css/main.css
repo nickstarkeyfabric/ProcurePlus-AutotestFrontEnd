@@ -1,3 +1,7 @@
 body {
     padding-top: 70px;
 }
+
+.active-toggle {
+    transition: background 0.2s;
+}
